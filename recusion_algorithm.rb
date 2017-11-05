@@ -17,3 +17,13 @@ def exp2(base, power)
   half = exp2(base, power / 2)
   power.even? ? half * half : base * half * half
 end
+
+# Ruby keeps things simple by giving you shallow dup, and letting you write deep dup yourself.
+# This method will perform a "deep" duplication of any and all interior arrays.
+def deep_dup(arr)
+  dupped = []
+  arr.each do |el|
+    el.is_a?(Array) ? dupped << deep_dup(el) : dupped << el
+  end
+  dupped
+end
