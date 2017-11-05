@@ -7,7 +7,7 @@ def rec_range(start, endd)
 end
 
 
-def exp1(base, exponent)
-  return 1 if exponent == 0
-  base * exp1(base, exponent -1)
+def exp1(base, power)
+   power == 0 ? 1 : base * exp1(base, power -1)
+
 end
