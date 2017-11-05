@@ -39,3 +39,11 @@ def fibonacci(n)
   fibs = fibonacci(n -1)
   fibs << fibs[-1] + fibs[-2]
 end
+
+# A method subsets that will return all subsets of an array.
+def subsets(arr)
+  return [[]] if arr.empty?
+  last = arr.last
+  subs = subsets(arr.take( (arr.size) -1 ))
+  subs.concat( subs.map{|sub| sub + [last] })
+end
