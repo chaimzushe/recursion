@@ -20,10 +20,15 @@ end
 
 # Ruby keeps things simple by giving you shallow dup, and letting you write deep dup yourself.
 # This method will perform a "deep" duplication of any and all interior arrays.
+
 def deep_dup(arr)
   dupped = []
   arr.each do |el|
     el.is_a?(Array) ? dupped << deep_dup(el) : dupped << el
   end
   dupped
+end
+# a one liner version of previous method
+def deep_dup(arr)
+  arr.map{|el| el.is_a?(Array) ? deep_dup(el) : el}
 end
