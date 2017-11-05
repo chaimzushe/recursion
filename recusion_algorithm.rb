@@ -1,4 +1,5 @@
-
+require 'byebug'
+require 'Benchmark'
 # A method that returns the range from start, til (not including!) endd.
 def rec_range(start, endd)
   return [] if start >= endd
@@ -46,4 +47,23 @@ def subsets(arr)
   last = arr.last
   subs = subsets(arr.take( (arr.size) -1 ))
   subs.concat( subs.map{|sub| sub + [last] })
+end
+
+#A recursive method that calculates all the permutations of a given array.
+def permutations(arr)
+
+end
+
+def binary_search(arr, target)
+  return nil if arr.empty?
+  middle = arr.size / 2
+  case arr[middle] <=> target
+  when 1
+    binary_search(arr[0...middle], target)
+  when 0
+    return middle
+  when -1
+    result = binary_search(arr.drop(middle + 1), target)
+    result.nil? ? nil : result + 1 + middle
+  end
 end
