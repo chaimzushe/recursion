@@ -49,11 +49,9 @@ def subsets(arr)
   subs.concat( subs.map{|sub| sub + [last] })
 end
 
-#A recursive method that calculates all the permutations of a given array.
-def permutations(arr)
 
-end
 
+# A big O of log(n) method to search an array
 def binary_search(arr, target)
   return nil if arr.empty?
   middle = arr.size / 2
@@ -66,4 +64,18 @@ def binary_search(arr, target)
     result = binary_search(arr.drop(middle + 1), target)
     result.nil? ? nil : result + 1 + middle
   end
+end
+
+#A recursive method that calculates all the permutations of a given array.
+def permutations(array)
+  return [array] if array.length <= 1
+  first = array.first
+  perms = permutations(array.drop(1))
+  total_permutations = []
+  perms.each do |perm|
+    (0..perm.length).each do |i|
+      total_permutations << perm[0...i] + [first] + perm[i..-1]
+    end
+  end
+  total_permutations
 end
