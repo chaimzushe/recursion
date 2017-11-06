@@ -79,3 +79,27 @@ def permutations(array)
   end
   total_permutations
 end
+
+# sorting method 1:  quick sort:
+def quick_sort(arr)
+  return arr if arr.size <= 1
+  pivot = arr.first
+  left, right = arr.drop(1).partition{|el| el <= pivot }
+  quick_sort(left) + [pivot] + quick_sort(right)
+end
+
+# sorting method 2:  quick sort:
+def merge_sort(arr)
+  return arr if arr.size <= 1
+  middle = arr.size / 2
+   merge(merge_sort(arr.take(middle)),merge_sort(arr.drop(middle)))
+end
+
+
+def merge(right, left)
+  merged = []
+  until right.empty? || left.empty?
+    right.first < left.first ? merged << right.shift : merged << left.shift
+  end
+  merged + left + right
+end
